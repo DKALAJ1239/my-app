@@ -23,16 +23,16 @@ const QuizOne = ({ navigation }) => {
   };
 
   const handleNextPress = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-    setSelectedOption(null);
     if (selectedOption == currentQuestion.correctAnswerIndex) {
       console.log("meow");
       setScore(score + 1);
     }
-  };
-
-  const handleEndQuizPress = () => {
-    navigation.navigate("Results", { score });
+    setSelectedOption(null);
+    if (currentQuestionIndex < data.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      navigation.navigate("Results", { score });
+    }
   };
 
   return (
@@ -52,30 +52,9 @@ const QuizOne = ({ navigation }) => {
           <Text>{option.answer}</Text>
         </TouchableOpacity>
       ))}
-      {currentQuestionIndex < data.length - 1 ? (
-        <TouchableOpacity onPress={handleNextPress}>
-          <Text>Next</Text>
-        </TouchableOpacity>
-      ) : (
-        <Pressable
-          onPress={handleEndQuizPress}
-          style={{
-            backgroundColor: "green",
-            padding: 15,
-            width: 150,
-            borderRadius: 15,
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginTop: 30,
-          }}
-        >
-          <Text
-            style={{ color: "beige", fontWeight: "600", textAlign: "center" }}
-          >
-            End Quiz
-          </Text>
-        </Pressable>
-      )}
+      <TouchableOpacity onPress={handleNextPress}>
+        <Text>Next</Text>
+      </TouchableOpacity>
       <Text>answer: {currentQuestion.correctAnswerIndex}</Text>
       <Text>selected: {selectedOption}</Text>
       <Text>

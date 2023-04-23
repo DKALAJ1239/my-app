@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Results = () => {
@@ -18,6 +18,27 @@ const Results = () => {
           ? "Not bad, but you could do better."
           : "You need to brush up on your trivia."}
       </Text>
+      <Pressable
+        onPress={() => {
+          console.log("Home button pressed");
+          navigation.navigate("Home");
+        }}
+        style={{
+          backgroundColor: "green",
+          padding: 15,
+          width: 150,
+          borderRadius: 15,
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginTop: 30,
+        }}
+      >
+        <Text
+          style={{ color: "beige", fontWeight: "600", textAlign: "center" }}
+        >
+          Return Home
+        </Text>
+      </Pressable>
     </View>
   );
 };
