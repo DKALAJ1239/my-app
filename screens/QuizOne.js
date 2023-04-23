@@ -4,11 +4,12 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import Questions from "../slices/Questions";
 
-const QuizOne = () => {
+const QuizOne = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -30,6 +31,10 @@ const QuizOne = () => {
     }
   };
 
+  const handleEndQuizPress = () => {
+    navigation.navigate("Results", { score });
+  };
+
   return (
     <SafeAreaView>
       <Text>{currentQuestion.question}</Text>
@@ -47,10 +52,30 @@ const QuizOne = () => {
           <Text>{option.answer}</Text>
         </TouchableOpacity>
       ))}
-
-      <TouchableOpacity onPress={handleNextPress}>
-        <Text>Next</Text>
-      </TouchableOpacity>
+      {currentQuestionIndex < data.length - 1 ? (
+        <TouchableOpacity onPress={handleNextPress}>
+          <Text>Next</Text>
+        </TouchableOpacity>
+      ) : (
+        <Pressable
+          onPress={handleEndQuizPress}
+          style={{
+            backgroundColor: "green",
+            padding: 15,
+            width: 150,
+            borderRadius: 15,
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: 30,
+          }}
+        >
+          <Text
+            style={{ color: "beige", fontWeight: "600", textAlign: "center" }}
+          >
+            End Quiz
+          </Text>
+        </Pressable>
+      )}
       <Text>answer: {currentQuestion.correctAnswerIndex}</Text>
       <Text>selected: {selectedOption}</Text>
       <Text>
