@@ -25,6 +25,11 @@ const Navigate = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="QuizTwo"
+          component={QuizTwo}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Results"
           component={Results}
           options={{ headerShown: false }}
