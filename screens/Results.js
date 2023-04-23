@@ -1,9 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const Results = ({ score }) => {
+const Results = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const score = route.params.score;
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Quiz Results</Text>
