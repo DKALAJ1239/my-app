@@ -1,40 +1,75 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
 import Questions from "../slices/Questions";
-import { CheckBox } from "react-native-elements";
 
 const QuizOne = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+
   const data = Questions;
-  const [answer, setAnswer] = useState();
-  // const currentQuestion = data[0];
+  const currentQuestion = data[currentQuestionIndex];
+
+  const handleOptionPress = (optionId) => {
+    console.log(optionId);
+    setSelectedOption(optionId);
+  };
+
+  const handleNextPress = () => {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setSelectedOption(null);
+    if (selectedOption == currentQuestion.correctAnswerIndex) {
+      console.log("meow");
+      setScore(score + 1);
+    }
+  };
 
   return (
-    <View>
-      <Text style={styles.question}>{question}</Text>
-      <View>
-        {answers.map((answer) => (
-          <CheckBox
-            center
-            key={answer.id}
-            title={answer.choice}
-            // if these are not empty strings, the default checkbox appears
-            checkedIcon=""
-            uncheckedIcon=""
-            checked={this.state[answer.id] || false}
-            // ternary conditionally renders the color of choice container
-            containerStyle={
-              this.state[answer.id]
-                ? { backgroundColor: answer.isCorrect ? "lightgreen" : "pink" }
-                : null
-            }
-            onPress={() => this.handleSelection(answer)}
-          />
-        ))}
-      </View>
-    </View>
+    <SafeAreaView>
+      <Text>{currentQuestion.question}</Text>
+      {currentQuestion.options.map((option) => (
+        <TouchableOpacity
+          key={option.id}
+          style={[
+            styles.option,
+            selectedOption === option && styles.selectedOption,
+          ]}
+          onPress={() => {
+            handleOptionPress(option.id);
+          }}
+        >
+          <Text>{option.answer}</Text>
+        </TouchableOpacity>
+      ))}
+
+      <TouchableOpacity onPress={handleNextPress}>
+        <Text>Next</Text>
+      </TouchableOpacity>
+      <Text>answer: {currentQuestion.correctAnswerIndex}</Text>
+      <Text>selected: {selectedOption}</Text>
+      <Text>
+        Score: Score: {score}/{currentQuestionIndex}
+      </Text>
+    </SafeAreaView>
   );
 };
 
 export default QuizOne;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  option: {
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 10,
+    marginVertical: 10,
+  },
+  selectedOption: {
+    backgroundColor: "grey",
+  },
+});
