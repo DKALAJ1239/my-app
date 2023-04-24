@@ -1,37 +1,20 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   TouchableOpacity,
-  Pressable,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import Questions from "../slices/QuestionsQ2";
 
 const QuizTwo = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
 
-  const data = [
-    {
-      id: 1,
-      question: "Where is this location?",
-      imageUrl: `https://maps.googleapis.com/maps/api/staticmap?center=40.712776,-74.005974&zoom=14&size=400x400&key=YOUR_API_KEY`,
-      options: ["New York City", "Los Angeles", "Chicago", "Miami"],
-      correctAnswerIndex: 0,
-    },
-    {
-      id: 2,
-      question: "Where is this location?",
-      imageUrl: `https://maps.googleapis.com/maps/api/staticmap?center=51.507351,-0.127758&zoom=14&size=400x400&key=YOUR_API_KEY`,
-      options: ["Paris", "London", "Berlin", "Madrid"],
-      correctAnswerIndex: 1,
-    },
-    // Add more questions as needed
-  ];
-
+  const data = Questions;
   const currentQuestion = data[currentQuestionIndex];
 
   const handleOptionPress = (optionId) => {
@@ -46,36 +29,75 @@ const QuizTwo = ({ navigation }) => {
     if (currentQuestionIndex < data.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      navigation.navigate("Results", { score });
+      navigation.navigate("Results", {
+        score:
+          score +
+          (selectedOption == currentQuestion.correctAnswerIndex ? 1 : 0),
+      });
+      setCurrentQuestionIndex(0);
+      setScore(0);
     }
   };
 
+  const renderProgressBar = () => {
+    return (
+      <View style={styles.progressBar}>
+        {[...Array(data.length)].map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.progressBarItem,
+              currentQuestionIndex >= index && styles.progressBarItemActive,
+            ]}
+          />
+        ))}
+      </View>
+    );
+  };
+
   return (
-    <SafeAreaView>
-      <Image
-        style={{ width: 400, height: 400 }}
-        source={{ uri: currentQuestion.imageUrl }}
-      />
-      {currentQuestion.options.map((option, index) => (
-        <TouchableOpacity
-          key={index}
-          style={[
-            styles.option,
-            selectedOption === index && styles.selectedOption,
-          ]}
-          onPress={() => {
-            handleOptionPress(index);
-          }}
-        >
-          <Text>{option}</Text>
-        </TouchableOpacity>
-      ))}
-      <TouchableOpacity onPress={handleNextPress}>
-        <Text>Next</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>GeoQuiz One: The Americas</Text>
+      </View>
+      {renderProgressBar()}
+      <View style={styles.questionContainer}>
+        <Text style={styles.questionText}>{currentQuestion.prompt}</Text>
+      </View>
+      <View style={styles.questionContainer}>
+        <Image
+          style={styles.image}
+          source={{ uri: currentQuestion.imageUri }}
+          resizeMode="contain"
+        />
+      </View>
+      <View style={styles.optionsContainer}>
+        {currentQuestion.options.map((option) => (
+          <TouchableOpacity
+            key={option.id}
+            style={[
+              styles.option,
+              selectedOption === option.id && styles.selectedOption,
+            ]}
+            onPress={() => handleOptionPress(option.id)}
+            disabled={selectedOption !== null}
+          >
+            <Text style={styles.optionText}>
+              {option.option}. {option.answer}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <TouchableOpacity
+        style={selectedOption ? styles.button : styles.disabledButton}
+        onPress={handleNextPress}
+        disabled={!selectedOption}
+      >
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
-      <Text>Answer: {currentQuestion.options[currentQuestion.correctAnswerIndex]}</Text>
-      <Text>Selected: {currentQuestion.options[selectedOption]}</Text>
-      <Text>Score: {score}/{currentQuestionIndex}</Text>
+      <Text style={styles.scoreText}>
+        Score so far: {score}/{currentQuestionIndex}
+      </Text>
     </SafeAreaView>
   );
 };
@@ -83,13 +105,99 @@ const QuizTwo = ({ navigation }) => {
 export default QuizTwo;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#0F1923",
+  },
+  header: {
+    backgroundColor: "#1E2A38",
+    height: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#36454F",
+  },
+  headerText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  questionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
+  questionText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#FFFFFF",
+  },
+  optionsContainer: {
+    flex: 3,
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    paddingHorizontal: 20,
+  },
   option: {
     borderWidth: 1,
-    borderColor: "black",
-    padding: 10,
+    borderColor: "#FFFFFF",
+    borderRadius: 10,
+    padding: 20,
     marginVertical: 10,
+    backgroundColor: "#1E2A38",
   },
   selectedOption: {
-    backgroundColor: "grey",
+    backgroundColor: "#5B75A9",
+  },
+  optionText: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "#FFFFFF",
+  },
+  button: {
+    marginTop: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#f7d08a",
+    borderRadius: 5,
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 25,
+    textAlign: "center",
+  },
+  scoreText: {
+    marginTop: 20,
+    fontSize: 16,
+    textAlign: "center",
+    color: "#f7d08a",
+  },
+  progressBar: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 20,
+  },
+  progressBarItem: {
+    flex: 1,
+    height: 10,
+    marginHorizontal: 5,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 20,
+  },
+  progressBarItemActive: {
+    backgroundColor: "#f7d08a",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    borderWidth: 1,
+    borderColor: "#FFFFFF",
+    borderRadius: 10,
+    marginVertical: 20,
   },
 });

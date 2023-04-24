@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet} from "react-native";
 // import HomeScreenMain from "./screens/HomeScreenMain";
 import Navigate from "./components/Navigate";
 

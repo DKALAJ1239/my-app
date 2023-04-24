@@ -12,7 +12,7 @@ const Results = () => {
       <Text style={styles.header}>Quiz Results</Text>
       <Text style={styles.score}>Your score: {score}</Text>
       <Text style={styles.message}>
-        {score >= 7
+        {score >= 5
           ? "Great job! You really know your stuff."
           : score >= 4
           ? "Not bad, but you could do better."

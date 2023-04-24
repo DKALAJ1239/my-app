@@ -5,87 +5,106 @@ import React from "react";
 const HomeScreenMain = () => {
   const navigation = useNavigation();
   return (
-    <View style={{ marginTop: 15 }}>
-      <Image
-        style={{ height: 370, width: "100%", resizeMode: "contain" }}
-        source={{
-          uri: "  ",
-        }}
-      />
-
-      <View style={{ padding: 25 }}>
-        <Text
-          style={{
-            textAlign: "center",
-            color: "red",
-            fontSize: 30,
-            fontWeight: "bold",
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: "https://github.com/DKALAJ1239/my-app/blob/master/assets/brand_pic.PNG?raw=true",
           }}
-        >
-          How to Play
-        </Text>
+        />
       </View>
-      <View
-        style={{
-          padding: 10,
-          backgroundColor: "#F88379",
-          borderRadius: 6,
-          marginTop: 15,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginVertical: 5,
-          }}
-        >
-          <Text style={{ color: "white" }}>•</Text>
-          <Text
-            style={{
-              marginLeft: 4,
-              color: "#722F37",
-              fontSize: 15,
-              fontWeight: "500",
-            }}
-          >
-            For each correct answer you get 5 points
+
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>How to Play</Text>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletPointSymbol}>•</Text>
+          <Text style={styles.bulletPointText}>
+            Each question is worth 1 point.
+          </Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletPointSymbol}>•</Text>
+          <Text style={styles.bulletPointText}>
+            There is 5 questions per quiz.
+          </Text>
+        </View>
+        <View style={styles.bulletPoint}>
+          <Text style={styles.bulletPointSymbol}>•</Text>
+          <Text style={styles.bulletPointText}>
+            Once you select a answer, you cannot change it!
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginVertical: 5,
-        }}
+
+      <Pressable
+        onPress={() => navigation.navigate("AllQuizzes")}
+        style={styles.startButton}
       >
-        <Text style={{ color: "white" }}>•</Text>
-      </View>
-      <View>
-        <Pressable
-          onPress={() => navigation.navigate("QuizOne")}
-          style={{
-            backgroundColor: "green",
-            padding: 15,
-            width: 150,
-            borderRadius: 15,
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginTop: 30,
-          }}
-        >
-          <Text
-            style={{ color: "beige", fontWeight: "600", textAlign: "center" }}
-          >
-            Start Quiz
-          </Text>
-        </Pressable>
-      </View>
+        <Text style={styles.startButtonText}>Start Quiz</Text>
+      </Pressable>
     </View>
   );
 };
 
 export default HomeScreenMain;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#202c39",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  imageContainer: {
+    borderRadius: 150,
+    overflow: "hidden",
+    borderWidth: 5,
+    borderColor: "#f7d08a",
+    marginTop: 20,
+  },
+  image: {
+    height: 200,
+    width: 300,
+    resizeMode: "cover",
+  },
+  textContainer: {
+    padding: 10,
+    alignItems: "center",
+    marginTop: 30,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#f7d08a",
+  },
+  bulletPoint: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 5,
+  },
+  bulletPointSymbol: {
+    color: "#f7d08a",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  bulletPointText: {
+    marginLeft: 10,
+    color: "#f7d08a",
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  startButton: {
+    backgroundColor: "#f7d08a",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    marginTop: 50,
+  },
+  startButtonText: {
+    color: "#202c39",
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});

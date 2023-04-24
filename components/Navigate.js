@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreenMain from "../screens/HomeScreenMain.js";
+import AllQuizzes from "../screens/AllQuizzes.js";
 import QuizOne from "../screens/QuizOne.js";
 import QuizTwo from "../screens/QuizTwo.js";
 import Results from "../screens/Results.js";
@@ -18,6 +19,11 @@ const Navigate = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreenMain}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AllQuizzes"
+          component={AllQuizzes}
           options={{ headerShown: false }}
         />
         <Stack.Screen
