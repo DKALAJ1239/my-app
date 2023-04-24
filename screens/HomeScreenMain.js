@@ -32,7 +32,7 @@ const HomeScreenMain = () => {
         <View style={styles.bulletPoint}>
           <Text style={styles.bulletPointSymbol}>•</Text>
           <Text style={styles.bulletPointText}>
-            Once you select a answer, you cannot change it!
+            Once you select a answer, it can't be changed!
           </Text>
         </View>
       </View>

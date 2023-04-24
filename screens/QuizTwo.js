@@ -64,7 +64,7 @@ const QuizTwo = ({ navigation }) => {
       <View style={styles.questionContainer}>
         <Text style={styles.questionText}>{currentQuestion.prompt}</Text>
       </View>
-      <View style={styles.questionContainer}>
+      <View style={styles.questionContainerPic}>
         <Image
           style={styles.image}
           source={{ uri: currentQuestion.imageUri }}
@@ -128,17 +128,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
+  questionContainerPic: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    height: 400,
+  },
   questionText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     color: "#FFFFFF",
   },
   optionsContainer: {
-    flex: 3,
+    flex: 4,
     justifyContent: "flex-start",
     alignItems: "stretch",
-    paddingHorizontal: 20,
+    paddingHorizontal: 50,
+    paddingVertical: 10,
   },
   option: {
     borderWidth: 1,
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 200,
+    height: "200%",
     borderWidth: 1,
     borderColor: "#FFFFFF",
     borderRadius: 10,
