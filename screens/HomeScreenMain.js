@@ -9,7 +9,7 @@ const HomeScreenMain = () => {
       <Image
         style={{ height: 370, width: "100%", resizeMode: "contain" }}
         source={{
-          uri: "https://github.com/DKALAJ1239/my-app/blob/master/assets/brand.PNG?raw=true",
+          uri: "  ",
         }}
       />
 
