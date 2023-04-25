@@ -228,7 +228,7 @@ const QuizFour = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleRefresh}>
         <Text style={styles.buttonText}>Refresh</Text>
       </TouchableOpacity>
-      <Text style={styles.score}>Score: {score}</Text>
+      <Text style={styles.score}>Score: {score}/{currentQuestion}</Text>
     </View>
   );
 };
