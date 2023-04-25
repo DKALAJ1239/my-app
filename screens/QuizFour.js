@@ -111,7 +111,7 @@ const QuizQuestions = [
     options: [
       { id: "0", option: "A", answer: "Estonia" },
       { id: "1", option: "B", answer: "Belarus" },
-      { id: "2", option: "C", answer: "BDenmark" },
+      { id: "2", option: "C", answer: "Denmark" },
       { id: "3", option: "D", answer: "Maldova" },
     ],
     correctAnswerIndex: 3,
@@ -156,8 +156,18 @@ const QuizFour = ({ navigation }) => {
     setImageUrl("");
     setCurrentQuestion(currentQuestion);
     const { lat, lng } = {
-      lat: 48.87 + Math.random() * 0.02,
-      lng: 2.31 + Math.random() * 1.07,
+      lat: (
+        Math.random() *
+          (QuizQuestions[currentQuestion].lat -
+            (QuizQuestions[currentQuestion].lat - 0.025)) +
+        (QuizQuestions[currentQuestion].lat - 0.025)
+      ).toFixed(5),
+      lng: (
+        Math.random() *
+          (QuizQuestions[currentQuestion].lng -
+            (QuizQuestions[currentQuestion].lng - 0.025)) +
+        (QuizQuestions[currentQuestion].lng - 0.025)
+      ).toFixed(5),
     };
     const url = `https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${lat},${lng}&key=${API_KEY}`;
 
