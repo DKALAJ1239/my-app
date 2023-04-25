@@ -8,6 +8,7 @@ import AllQuizzes from "../screens/AllQuizzes.js";
 import QuizOne from "../screens/QuizOne.js";
 import QuizTwo from "../screens/QuizTwo.js";
 import QuizThree from "../screens/QuizThree.js";
+import QuizFour from "../screens/QuizFour.js";
 import Results from "../screens/Results.js";
 
 import React from "react";
@@ -40,6 +41,11 @@ const Navigate = () => {
         <Stack.Screen
           name="QuizThree"
           component={QuizThree}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="QuizFour"
+          component={QuizFour}
           options={{ headerShown: false }}
         />
         <Stack.Screen

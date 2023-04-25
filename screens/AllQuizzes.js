@@ -24,6 +24,12 @@ const AllQuizzes = () => {
       >
         <Text style={styles.startButtonText}>GeoQuiz Two: Asia</Text>
       </Pressable>
+      <Pressable
+        onPress={() => navigation.navigate("QuizFour")}
+        style={styles.startButton}
+      >
+        <Text style={styles.startButtonText}>The Real Deal</Text>
+      </Pressable>
     </View>
   );
 };
