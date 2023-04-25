@@ -144,7 +144,9 @@ const QuizFour = ({ navigation }) => {
           QuizQuestions[currentQuestion].correctAnswerIndex
         ].answer
     ) {
-      navigation.navigate("Results", { score: score + 1 });
+      navigation.navigate("Results", { score: score });
+    } else if (currentQuestion === QuizQuestions.length - 1) {
+      navigation.navigate("Results", { score: score });
     } else {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption(null);
@@ -248,8 +250,8 @@ const styles = StyleSheet.create({
     color: "#f7d08a",
   },
   image: {
-    width: 300,
-    height: 150,
+    width: 600,
+    height: 300,
     marginBottom: 20,
   },
   button: {
