@@ -1,6 +1,6 @@
 export default [
   {
-    question: "In what contintent is Indonesia?",
+    question: "In what contintent is Brazil in?",
     options: [
       {
         id: "0",
@@ -10,20 +10,20 @@ export default [
       {
         id: "1",
         options: "B",
-        answer: "Europe",
+        answer: "Central America",
       },
       {
         id: "2",
         options: "C",
-        answer: "Asia",
+        answer: "Africa",
       },
       {
         id: "3",
         options: "D",
-        answer: "India",
+        answer: "Asia",
       },
     ],
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 0,
   },
   {
     question: "Which continent has the highest population density? ",
@@ -52,81 +52,81 @@ export default [
     correctAnswerIndex: 0,
   },
   {
-    question: "what is 5X5",
+    question: "what is 10X10",
     options: [
       {
         id: "0",
         options: "A",
-        answer: "20",
+        answer: "500",
       },
       {
         id: "1",
         options: "B",
-        answer: "25",
+        answer: "50",
       },
       {
         id: "2",
         options: "C",
-        answer: "10",
+        answer: "100",
       },
       {
         id: "3",
         options: "D",
-        answer: "30",
+        answer: "20",
+      },
+    ],
+    correctAnswerIndex: 2,
+  },
+  {
+    question: "what is the square root of 400",
+    options: [
+      {
+        id: "0",
+        options: "A",
+        answer: "10",
+      },
+      {
+        id: "1",
+        options: "B",
+        answer: "20",
+      },
+      {
+        id: "2",
+        options: "C",
+        answer: "5",
+      },
+      {
+        id: "3",
+        options: "D",
+        answer: "Isn't a Perfect Square",
       },
     ],
     correctAnswerIndex: 1,
   },
   {
-    question: "what is the square root of 169",
+    question: "What is the Smallest Country?",
     options: [
       {
         id: "0",
         options: "A",
-        answer: "20",
+        answer: "North Korea",
       },
       {
         id: "1",
         options: "B",
-        answer: "23",
+        answer: "Loas",
       },
       {
         id: "2",
         options: "C",
-        answer: "13",
+        answer: "Mongolia",
       },
       {
         id: "3",
         options: "D",
-        answer: "23",
+        answer: "Vatican City",
       },
     ],
-    correctAnswerIndex: 2,
-  },
-  {
-    question: "What is the Smallest Ocean?",
-    options: [
-      {
-        id: "0",
-        options: "A",
-        answer: "Atlantic Ocean",
-      },
-      {
-        id: "1",
-        options: "B",
-        answer: "Pacific Ocean",
-      },
-      {
-        id: "2",
-        options: "C",
-        answer: "Arctic Ocean",
-      },
-      {
-        id: "3",
-        options: "D",
-        answer: "Indian Ocean",
-      },
-    ],
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 3,
   },
 ];

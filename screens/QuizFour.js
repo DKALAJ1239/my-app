@@ -144,7 +144,7 @@ const QuizFour = ({ navigation }) => {
           QuizQuestions[currentQuestion].correctAnswerIndex
         ].answer
     ) {
-      navigation.navigate("Results", { score: score });
+      navigation.navigate("Results", { score: score + 1 });
     } else if (currentQuestion === QuizQuestions.length - 1) {
       navigation.navigate("Results", { score: score });
     } else {
