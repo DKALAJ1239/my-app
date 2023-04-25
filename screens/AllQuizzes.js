@@ -6,6 +6,7 @@ const AllQuizzes = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+      <Text style={styles.menuText}>Pick a Quiz, any Quiz...</Text>
       <Pressable
         onPress={() => navigation.navigate("QuizOne")}
         style={styles.startButton}
@@ -29,6 +30,12 @@ const AllQuizzes = () => {
         style={styles.startButton}
       >
         <Text style={styles.startButtonText}>The Real Deal</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => navigation.navigate("Home")}
+        style={styles.menuButton}
+      >
+        <Text style={styles.menuButtonText}>Return to Home Screen</Text>
       </Pressable>
     </View>
   );
@@ -90,6 +97,24 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     color: "#202c39",
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  menuText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#f7d08a",
+  },
+  menuButton: {
+    backgroundColor: "#151f26",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    marginTop: 50,
+  },
+  menuButtonText: {
+    color: "#f7d08a",
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",

@@ -76,30 +76,43 @@ const QuizQuestions = [
   },
   {
     question: "Guess the Country in the Picture",
-    lat: (Math.random() * (59.9459 - 59.91484) + 59.91484).toFixed(5),
-    lng: (Math.random() * (10.85133 - 10.77408) + 10.77408).toFixed(5),
-    // lat between 59.9459 and 59.91484 and lng 10.77408 and 10.85133
+    lat: (Math.random() * (41.9263 - 41.86674) + 41.86674).toFixed(5),
+    lng: (Math.random() * (12.60773 - 12.50542) + 12.50542).toFixed(5),
+    // lat between 41.92630 and 41.86674 and lng 12.60773 and 12.50542
     options: [
       {
         id: "0",
         option: "A",
-        answer: "Greece",
+        answer: "Norway",
       },
       {
         id: "1",
         option: "B",
-        answer: "Serbia",
+        answer: "Italy",
       },
       {
         id: "2",
         option: "C",
-        answer: "Italy",
+        answer: "Poland",
       },
       {
         id: "3",
         option: "D",
-        answer: "Norway",
+        answer: "Greece",
       },
+    ],
+    correctAnswerIndex: 1,
+  },
+  {
+    question: "Guess the Country in the Picture",
+    lat: (Math.random() * (47.08252 - 46.93878) + 46.93878).toFixed(5),
+    lng: (Math.random() * (29.09857 - 28.84039) + 28.84039).toFixed(5),
+    // lat between 47.08252 and 46.93878 lng between 29.09857 and 28.84039
+    options: [
+      { id: "0", option: "A", answer: "Estonia" },
+      { id: "1", option: "B", answer: "Belarus" },
+      { id: "2", option: "C", answer: "BDenmark" },
+      { id: "3", option: "D", answer: "Maldova" },
     ],
     correctAnswerIndex: 3,
   },
@@ -178,7 +191,16 @@ const QuizFour = ({ navigation }) => {
       {imageUrl ? (
         <Image style={styles.image} source={{ uri: imageUrl }} />
       ) : (
-        <Text>No image available</Text>
+        <Text
+          style={{
+            color: "#f7d08a",
+            fontWeight: "600",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          *No image available*
+        </Text>
       )}
       {QuizQuestions[currentQuestion].options.map((option) => (
         <TouchableOpacity
@@ -187,7 +209,7 @@ const QuizFour = ({ navigation }) => {
           onPress={() => handleAnswer(option.answer)}
         >
           <Text style={styles.buttonText}>
-            {option.option} - {option.answer}
+            {option.option} : {option.answer}
           </Text>
         </TouchableOpacity>
       ))}
@@ -206,13 +228,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "#0F1923",
   },
   question: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     marginVertical: 20,
+    color: "#f7d08a",
   },
   image: {
     width: 300,
@@ -220,21 +243,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#f7d08a",
     borderRadius: 10,
     padding: 10,
     margin: 5,
     minWidth: 200,
   },
   buttonText: {
-    color: "#FFFFFF",
-    fontSize: 18,
+    color: "#202c39",
     textAlign: "center",
+    fontSize: 25,
+    fontWeight: "bold",
   },
   score: {
     fontSize: 16,
     fontWeight: "bold",
     marginTop: 20,
+    color: "#f7d08a",
   },
   refreshButton: {
     backgroundColor: "#2196F3",

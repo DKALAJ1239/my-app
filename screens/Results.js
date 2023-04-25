@@ -24,7 +24,7 @@ const Results = () => {
           navigation.navigate("Home");
         }}
         style={{
-          backgroundColor: "green",
+          backgroundColor: "#f7d08a",
           padding: 15,
           width: 150,
           borderRadius: 15,
@@ -34,9 +34,40 @@ const Results = () => {
         }}
       >
         <Text
-          style={{ color: "beige", fontWeight: "600", textAlign: "center" }}
+          style={{
+            color: "#202c39",
+            fontWeight: "600",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
         >
           Return Home
+        </Text>
+      </Pressable>
+      <Pressable
+        onPress={() => {
+          console.log("Home button pressed");
+          navigation.navigate("AllQuizzes");
+        }}
+        style={{
+          backgroundColor: "#f7d08a",
+          padding: 15,
+          width: 150,
+          borderRadius: 15,
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginTop: 30,
+        }}
+      >
+        <Text
+          style={{
+            color: "#202c39",
+            fontWeight: "600",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Return to Quizzes
         </Text>
       </Pressable>
     </View>
@@ -48,20 +79,23 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#202c39",
   },
   header: {
     fontSize: 32,
     fontWeight: "bold",
     marginBottom: 20,
+    color: "#f7d08a",
   },
   score: {
     fontSize: 24,
     marginBottom: 10,
+    color: "#f7d08a",
   },
   message: {
     fontSize: 20,
     textAlign: "center",
+    color: "#f7d08a",
   },
 });
 
