@@ -105,14 +105,14 @@ const QuizQuestions = [
   },
   {
     question: "Guess the Country in the Picture",
-    lat: (Math.random() * (47.08252 - 46.93878) + 46.93878).toFixed(5),
-    lng: (Math.random() * (29.09857 - 28.84039) + 28.84039).toFixed(5),
-    // lat between 47.08252 and 46.93878 lng between 29.09857 and 28.84039
+    lat: (Math.random() * (52.50685 - 52.46971) + 52.46971).toFixed(5),
+    lng: (Math.random() * (-1.87544 - -1.91359) + -1.91359).toFixed(5),
+    // lat between 52.50685 and 52.46971 lng between -1.91359 and -1.87544
     options: [
       { id: "0", option: "A", answer: "Estonia" },
       { id: "1", option: "B", answer: "Belarus" },
       { id: "2", option: "C", answer: "Denmark" },
-      { id: "3", option: "D", answer: "Maldova" },
+      { id: "3", option: "D", answer: "Britain" },
     ],
     correctAnswerIndex: 3,
   },
