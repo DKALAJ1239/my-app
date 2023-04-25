@@ -1,5 +1,6 @@
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { View, Text, Image, StyleSheet } from "react-native";
+import Axios from "axios";
 
 const QuizQuestions = [
   {
@@ -36,14 +37,26 @@ const QuizFour = ({ navigation }) => {
   }, []);
 
   return (
-    <div>
+    <View style={styles.container}>
       {imageUrl ? (
-        <img src={imageUrl} alt="Street view" />
+        <Image style={styles.image} source={{ uri: imageUrl }} />
       ) : (
-        <div>No image available</div>
+        <Text>No image available</Text>
       )}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 600,
+    height: 300,
+  },
+});
 
 export default QuizFour;
