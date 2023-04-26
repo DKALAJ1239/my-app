@@ -126,8 +126,9 @@ const QuizFour = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
   const [refresh, setRefresh] = useState(false); // new state variable
+  const [message, setMessage] = useState(null);
 
-  const handleAnswer = (answer) => {
+  const handleAnswerA = (answer) => {
     if (
       answer ===
       QuizQuestions[currentQuestion].options[
@@ -151,6 +152,26 @@ const QuizFour = ({ navigation }) => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption(null);
     }
+  };
+
+  const handleAnswerB = (answer) => {
+    if (
+      answer ===
+      QuizQuestions[currentQuestion].options[
+        QuizQuestions[currentQuestion].correctAnswerIndex
+      ].answer
+    ) {
+      setMessage("You got it right!");
+      setScore(score + 1);
+    } else {
+      setMessage("You got it wrong!");
+    }
+    // rest of the code
+  };
+
+  const handleAnswerAAndB = (answer) => {
+    handleAnswerA(answer);
+    handleAnswerB(answer);
   };
 
   const handleRefresh = () => {
@@ -195,6 +216,15 @@ const QuizFour = ({ navigation }) => {
       });
   }, [currentQuestion, refresh]); // useEffect hook depends on refresh state
 
+  useEffect(() => {
+    if (message) {
+      const timeout = setTimeout(() => {
+        setMessage(null);
+      }, 2000); // adjust the timeout duration as needed
+      return () => clearTimeout(timeout);
+    }
+  }, [message]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.question}>
@@ -218,7 +248,7 @@ const QuizFour = ({ navigation }) => {
         <TouchableOpacity
           key={option.id}
           style={styles.button}
-          onPress={() => handleAnswer(option.answer)}
+          onPress={() => handleAnswerAAndB(option.answer)}
         >
           <Text style={styles.buttonText}>
             {option.option} : {option.answer}
@@ -228,7 +258,14 @@ const QuizFour = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleRefresh}>
         <Text style={styles.buttonText}>Refresh</Text>
       </TouchableOpacity>
-      <Text style={styles.score}>Score: {score}/{currentQuestion}</Text>
+      <Text style={styles.score}>
+        Score: {score}/{currentQuestion}
+      </Text>
+      {message && (
+        <View style={styles.messageContainer}>
+          <Text style={styles.messageText}>{message}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -279,5 +316,19 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     minWidth: 200,
+  },
+  messageContainer: {
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "#f7d08a", // red color for wrong message
+    width: "100%",
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  messageText: {
+    color: "#202c39",
+    fontSize: 22,
+    fontWeight: "bold",
   },
 });
