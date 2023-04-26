@@ -287,9 +287,12 @@ const styles = StyleSheet.create({
     color: "#f7d08a",
   },
   image: {
-    width: 600,
-    height: 300,
+    width: 900,
+    height: 450,
     marginBottom: 20,
+    borderRadius: 25,
+    borderColor: "#f7d08a",
+    borderWidth: 10,
   },
   button: {
     backgroundColor: "#f7d08a",
