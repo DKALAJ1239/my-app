@@ -1,7 +1,9 @@
+//The homescreen
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
+//Contains code for navigating to the quiz directory as well as the 'brand image' and explanation for the game
 const HomeScreenMain = () => {
   const navigation = useNavigation();
   return (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Axios from "axios";
 
+// QuizQuestions contains all the questions, options, correct answers, and location information
 const QuizQuestions = [
   {
     question: "Guess the Country in the Picture",
@@ -118,9 +119,12 @@ const QuizQuestions = [
   },
 ];
 
+//sets a constant named API_KEY to a string that represents an API key for Google Maps Street View API.
 const API_KEY = "AIzaSyBicqUIzS6qIzkk8vtr2bt5kZMlQpcMxW4";
 
 const QuizFour = ({ navigation }) => {
+  // state variables
+  // Setting state variables for image URL, current question, selected option, score, refresh flag and message
   const [imageUrl, setImageUrl] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -128,7 +132,9 @@ const QuizFour = ({ navigation }) => {
   const [refresh, setRefresh] = useState(false); // new state variable
   const [message, setMessage] = useState(null);
 
+  // Function to handle when any option is selected as answer
   const handleAnswerA = (answer) => {
+    // Checking if the selected answer is correct and incrementing score
     if (
       answer ===
       QuizQuestions[currentQuestion].options[
@@ -137,7 +143,7 @@ const QuizFour = ({ navigation }) => {
     ) {
       setScore(score + 1);
     }
-
+    // Checking if the selected answer is correct and incrementing score
     if (
       currentQuestion === QuizQuestions.length - 1 &&
       answer ===
@@ -154,6 +160,7 @@ const QuizFour = ({ navigation }) => {
     }
   };
 
+  // Part B of the function to handle when any option is selected as answer
   const handleAnswerB = (answer) => {
     if (
       answer ===
@@ -166,18 +173,20 @@ const QuizFour = ({ navigation }) => {
     } else {
       setMessage("You got it wrong!");
     }
-    // rest of the code
   };
 
+  // Function that combines both function A and B into one so it both can be called when button is pressed (without ruinning code :) )
   const handleAnswerAAndB = (answer) => {
     handleAnswerA(answer);
     handleAnswerB(answer);
   };
 
+  // Function to handle refresh button click
   const handleRefresh = () => {
     setSelectedOption(null);
     setImageUrl("");
     setCurrentQuestion(currentQuestion);
+    // Generate random latitude and longitude within a certain range around current question's coordinates
     const { lat, lng } = {
       lat: (
         Math.random() *
@@ -194,6 +203,7 @@ const QuizFour = ({ navigation }) => {
     };
     const url = `https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${lat},${lng}&key=${API_KEY}`;
 
+    //Axios library that was called earlier is being used here to get url of API
     Axios.get(url)
       .then((response) => {
         setImageUrl(response.request.responseURL);
@@ -203,6 +213,7 @@ const QuizFour = ({ navigation }) => {
       });
   };
 
+  //A use effect to help generate image based on url from API
   useEffect(() => {
     const { lat, lng } = QuizQuestions[currentQuestion];
     const url = `https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${lat},${lng}&key=${API_KEY}`;
@@ -216,6 +227,7 @@ const QuizFour = ({ navigation }) => {
       });
   }, [currentQuestion, refresh]); // useEffect hook depends on refresh state
 
+  //Code that is a useEffect to generate the message at the bottom with a timing aspect as well
   useEffect(() => {
     if (message) {
       const timeout = setTimeout(() => {
@@ -225,6 +237,7 @@ const QuizFour = ({ navigation }) => {
     }
   }, [message]);
 
+  //Rendering with return
   return (
     <View style={styles.container}>
       <Text style={styles.question}>

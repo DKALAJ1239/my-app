@@ -1,3 +1,4 @@
+//These are all question files
 export default [
   {
     question: "In what contintent is Brazil in?",

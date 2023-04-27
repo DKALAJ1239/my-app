@@ -1,3 +1,6 @@
+//Note: Quiz One thru Three work Very similar
+
+//basically using navigation again to make buttons direct user to the quiz they want
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -9,25 +12,34 @@ import {
 import Questions from "../slices/Questions";
 
 const QuizOne = ({ navigation }) => {
+  // Define state variables here
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
 
+  // Import quiz data from Questions slice
   const data = Questions;
+  // Get the current question based on the currentQuestionIndex
   const currentQuestion = data[currentQuestionIndex];
 
+  // Creating handles
+  // Define a function to handle option press
   const handleOptionPress = (optionId) => {
     setSelectedOption(optionId);
   };
 
+  // Define a function to handle the next button press
   const handleNextPress = () => {
     if (selectedOption == currentQuestion.correctAnswerIndex) {
       setScore(score + 1);
     }
+    // Reset selectedOption to null for the next question
     setSelectedOption(null);
+    // If there are more questions, go to the next question
     if (currentQuestionIndex < data.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      // If there are no more questions, navigate to the Results screen
       navigation.navigate("Results", {
         score:
           score +
@@ -38,6 +50,7 @@ const QuizOne = ({ navigation }) => {
     }
   };
 
+  // Define a function to render the progress bar
   const renderProgressBar = () => {
     return (
       <View style={styles.progressBar}>
@@ -54,6 +67,7 @@ const QuizOne = ({ navigation }) => {
     );
   };
 
+  // Render the QuizOne screen
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -183,4 +197,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7d08a",
   },
 });
-

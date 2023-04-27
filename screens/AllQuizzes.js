@@ -1,7 +1,11 @@
+//A screen that works almost like a directory to all my quizzes
+
+//importing modules and components
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
+//basically using navigation again to make buttons direct user to the quiz they want
 const AllQuizzes = () => {
   const navigation = useNavigation();
   return (
